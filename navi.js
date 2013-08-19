@@ -39,7 +39,7 @@ var Hashtable=function(t){function n(t){return typeof t==p?t:""+t}function e(t){
 
     if (listeners !== null) {
       for (var i = 0; i < listeners.length; i++) {
-        // Call stored function name on stored listener and pass in object
+        // Call stored function name on stored listener and pass in the notifying object
         listeners[i][0][ listeners[i][1] ](object);
       }
     }
