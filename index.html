@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="./navi.js"></script>
+  </head>
+  <body>
+    <script>
+      var listener_1 = {"name" : "Listener 1"};
+      var listener_2 = {"name" : "Listener 2"};
+      var publisher = {"test_key" : "test_value"};
+
+      Navi.listen(listener_1, publisher);
+      Navi.listen(listener_2, publisher);
+
+      listener_1.update = function(publisher) {
+        console.log(this.name + " " + publisher["test_key"]);
+      }
+
+      listener_2.update = function(publisher) {
+        console.log(this.name + " " + publisher["test_key"]);
+      }
+
+      Navi.notify(publisher);
+    </script>
+  </body>
+</html>
