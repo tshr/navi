@@ -35,52 +35,57 @@ var Hashtable=function(t){function n(t){return typeof t==p?t:""+t}function e(t){
 
   Navi.notify = function(object) {
 
-    var listeners_array = register.get(object);
+    var listeners = register.get(object);
 
-    if (listeners_array !== null) {
-      for (var i = 0; i < listeners_array.length; i++) {
-       listeners_array[i].update(object);
+    if (listeners !== null) {
+      for (var i = 0; i < listeners.length; i++) {
+       listeners[i].update(object);
       }
     }
   };
 
   Navi.listen = function(listener, object) {
 
-    var listeners_array = register.get(object);
+    var listeners = register.get(object);
 
-    if (listeners_array === null) {
+    if (listeners === null) {
       register.put(object, [listener]);
     } else {
-      for (var i = 0; i < listeners_array.length; i++) {
+      for (var i = 0; i < listeners.length; i++) {
         // return if listener is already registered
-        if (listeners_array[i] === listener) return;
+        if (listeners[i] === listener) return;
       }
-      listeners_array.push(listener);
-      register.put(object, listeners_array);
+      listeners.push(listener);
+      register.put(object, listeners);
     }
   };
 
   Navi.unlisten = function(listener, object) {
 
-    var listeners_array = register.get(object);
+    var listeners = register.get(object);
 
-    if (listeners_array !== null) {
-      for (var i = 0; i < listeners_array.length; i++) {
-        if (listeners_array[i] === listener) {
-          listeners_array.splice(i,1);
-          register.put(object, listeners_array);
+    if (listeners !== null) {
+      for (var i = 0; i < listeners.length; i++) {
+        if (listeners[i] === listener) {
+          listeners.splice(i,1);
+          register.put(object, listeners);
           break;
         }
       }
+      if (listeners.length === 0) register.remove(object);
     }
   };
 
-  Navi.unregister = function(object) {
-    register.remove(object);
+  Navi.get_listeners = function(object) {
+    return register.get(object);
   };
 
-  Navi.prune_register = function() {
-    //TODO
+  // Navi.inspect_register = function() {
+  //    todo
+  // };
+
+  Navi.unregister = function(object) {
+    register.remove(object);
   };
 
   Navi.clear_register = function() {
