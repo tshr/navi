@@ -25,7 +25,7 @@ var Hashtable=function(t){function n(t){return typeof t==p?t:""+t}function e(t){
  * Navi.js
  * Simple object pub / sub
  * Toshiro Ken Sugihara 2013
- * MIT License
+ * Released under the MIT License
  **/
 
 (function(){
