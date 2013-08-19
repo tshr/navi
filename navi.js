@@ -80,9 +80,9 @@ var Hashtable=function(t){function n(t){return typeof t==p?t:""+t}function e(t){
     return register.get(object);
   };
 
-  // Navi.inspect_register = function() {
-  //    todo
-  // };
+  Navi.inspect_register = function() {
+    return register.entries();
+  };
 
   Navi.unregister = function(object) {
     register.remove(object);
