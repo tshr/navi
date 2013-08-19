@@ -30,7 +30,7 @@ var Hashtable=function(t){function n(t){return typeof t==p?t:""+t}function e(t){
 
 (function(){
 
-  window.Navi = window.Navi || {};
+  window.Navi = {};
   var register = new Hashtable();
 
   Navi.notify = function(object) {
