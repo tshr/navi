@@ -39,23 +39,24 @@ var Hashtable=function(t){function n(t){return typeof t==p?t:""+t}function e(t){
 
     if (listeners !== null) {
       for (var i = 0; i < listeners.length; i++) {
-       listeners[i].update(object);
+        // Call stored function name on stored listener and pass in object
+        listeners[i][0][ listeners[i][1] ](object);
       }
     }
   };
 
-  Navi.listen = function(listener, object) {
+  Navi.listen = function(listener, object, function_name) {
 
     var listeners = register.get(object);
 
     if (listeners === null) {
-      register.put(object, [listener]);
+      register.put(object, [[ listener, function_name ]]);
     } else {
       for (var i = 0; i < listeners.length; i++) {
         // return if listener is already registered
-        if (listeners[i] === listener) return;
+        if (listeners[i][0] === listener) return;
       }
-      listeners.push(listener);
+      listeners.push([listener, function_name]);
       register.put(object, listeners);
     }
   };
@@ -66,7 +67,7 @@ var Hashtable=function(t){function n(t){return typeof t==p?t:""+t}function e(t){
 
     if (listeners !== null) {
       for (var i = 0; i < listeners.length; i++) {
-        if (listeners[i] === listener) {
+        if (listeners[i][0] === listener) {
           listeners.splice(i,1);
           register.put(object, listeners);
           break;
