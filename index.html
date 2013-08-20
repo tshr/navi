@@ -22,7 +22,15 @@
   <body>
     <span>Hello! </span><span id="first_name_show"></span>
     <form>
-      <input type="text" name="first_name" id="first_name_input" />
+      <input type="text" name="first_name" id="first_name_input" placeholder="Enter your name" />
     </form>
+    <script>
+      var i = 0;
+      setInterval(function(){
+        if (i / 100 > 2 * Math.PI) i = 0;
+        console.log(Math.ceil((Math.sin(i / 100) + 1) * 200));
+        i++;
+      }, 50);
+    </script>
   </body>
 </html>
