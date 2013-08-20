@@ -4,18 +4,20 @@
     <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
     <script src="./navi.js"></script>
     <script>
-      var form_watcher = { "name" : "" };
-      var span_writer = {
+      var form_object = { "name" : "" };
+      var span_object = {
         "update" : function(object) { $("#first_name_show").text(object.name) }
       };
 
-      Navi.listen(span_writer, form_watcher, "update");
+      Navi.listen(span_object, form_object, "update");
 
       $(function(){
         $( "input#first_name_input" ).on("input", function() {
-          form_watcher.name = $(this).val();
-          Navi.notify(form_watcher);
+          form_object.name = $(this).val();
+          Navi.notify(form_object);
         });
+
+
       });
     </script>
   </head>
@@ -26,11 +28,22 @@
     </form>
     <script>
       var i = 0;
+      var circle_1_object = { "radius" : 100 };
+      var circle_2_object = { "update" : function(object){ $('#circle_2').attr('r', 200 - object.radius)} };
+
+      Navi.listen(circle_2_object, circle_1_object, "update");
+
       setInterval(function(){
         if (i / 100 > 2 * Math.PI) i = 0;
-        console.log(Math.ceil((Math.sin(i / 100) + 1) * 200));
+        circle_1_object.radius = Math.ceil((Math.sin(i / 100) + 1) * 100);
+        $('#circle_1').attr('r', circle_1_object.radius);
+        Navi.notify(circle_1_object);
         i++;
-      }, 50);
+      }, 5);
     </script>
+    <svg width="804" height="404">
+      <circle cx="202" cy="202" r="100" stroke="black" stroke-width="1" fill="red" id="circle_1" />
+      <circle cx="606" cy="202" r="100" stroke="black" stroke-width="1" fill="blue" id="circle_2" />
+    </svg>
   </body>
 </html>
