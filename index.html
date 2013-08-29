@@ -15,7 +15,7 @@
         "update" : function(object) { $("#first_name_show").text(object.name) }
       };
 
-      Navi.listen(span_object, form_object, "update");
+      Navi.listen(form_object, span_object, "update");
 
       $(function(){
         $( "input#first_name_input" ).on("input", function() {
@@ -39,7 +39,7 @@
       var circle_1_object = { "radius" : 100 };
       var circle_2_object = { "update" : function(object){ $('#circle_2').attr('r', 201 - object.radius)} };
 
-      Navi.listen(circle_2_object, circle_1_object, "update");
+      Navi.listen(circle_1_object, circle_2_object, "update");
 
       setInterval(function(){
         if (i / 100 > (2 * Math.PI)) i = 0;
@@ -76,9 +76,9 @@
         var two   = new Messenger($('#message_circle_2'));
         var three = new Messenger($('#message_circle_3'));
 
-        Navi.listen(two, one, "update");
-        Navi.listen(three, two, "update");
-        Navi.listen(one, three, "update");
+        Navi.listen(one, two, "update");
+        Navi.listen(two, three, "update");
+        Navi.listen(three, one, "update");
 
         Navi.notify(one);
       });

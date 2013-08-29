@@ -36,30 +36,19 @@
 
   var register = new Hashtable();
 
-  _Navi.notify = function(object) {
+  _Navi.listen = function(object, listener, method_name) {
 
     var listeners = register.get(object);
-
-    if (listeners !== null) {
-      for (var i = 0; i < listeners.length; i++) {
-        // Call stored function name on stored listener and pass in the notifying object
-        listeners[i][0][ listeners[i][1] ](object);
-      }
-    }
-  };
-
-  _Navi.listen = function(listener, object, function_name) {
-
-    var listeners = register.get(object);
+    var listener_object = { "listener" : listener, "method_name" : method_name };
 
     if (listeners === null) {
-      register.put(object, [[ listener, function_name ]]);
+      register.put(object, [listener_object]);
     } else {
       for (var i = 0; i < listeners.length; i++) {
         // return if listener is already registered
-        if (listeners[i][0] === listener) return;
+        if (listeners[i].listener === listener) return;
       }
-      listeners.push([listener, function_name]);
+      listeners.push(listener_object);
       register.put(object, listeners);
     }
   };
@@ -70,13 +59,26 @@
 
     if (listeners !== null) {
       for (var i = 0; i < listeners.length; i++) {
-        if (listeners[i][0] === listener) {
+        if (listeners[i].listener === listener) {
           listeners.splice(i,1);
           register.put(object, listeners);
           break;
         }
       }
       if (listeners.length === 0) register.remove(object);
+    }
+  };
+
+  _Navi.notify = function(object) {
+
+    var listeners = register.get(object);
+
+    if (listeners !== null) {
+      for (var i = 0; i < listeners.length; i++) {
+        // Call stored method name on stored listener and pass in the notifying object
+        var listener_object = listeners[i];
+        listener_object.listener[ listener_object.method_name ](object);
+      }
     }
   };
 
