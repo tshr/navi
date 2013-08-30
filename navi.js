@@ -82,12 +82,12 @@
     }
   };
 
-  _Navi.get_listeners = function(object) { return register.get(object); };
+  _Navi.get_listeners = function(object) { return register.get(object) };
 
-  _Navi.unregister = function(object) { register.remove(object); };
+  _Navi.unregister = function(object) { register.remove(object) };
 
-  _Navi.inspect_register = function() { return register.entries(); };
+  _Navi.inspect_register = function() { return register.entries() };
 
-  _Navi.clear_register = function() { register.clear(); };
+  _Navi.clear_register = function() { register.clear() };
 
 }).call(this);
