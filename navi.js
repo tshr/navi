@@ -44,8 +44,8 @@
     if (listeners === null) {
       register.put(object, [listener_object]);
     } else {
+      // remove listener if it is already registered
       for (var i = 0; i < listeners.length; i++) {
-        // remove listener if it is already registered
         if (listeners[i].listener === listener) listeners.splice(i,1);
       }
       listeners.push(listener_object);
@@ -74,8 +74,8 @@
     var listeners = register.get(object);
 
     if (listeners !== null) {
+      // Call stored method names on stored listeners and pass in the notifying object
       for (var i = 0; i < listeners.length; i++) {
-        // Call stored method name on stored listener and pass in the notifying object
         var listener_object = listeners[i];
         listener_object.listener[ listener_object.method_name ](object);
       }
