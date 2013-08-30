@@ -5,8 +5,8 @@ describe('Navi', function() {
   beforeEach(function() {
 
     notifier = {'name' : 'notifier'};
-    listener_1 = { 'update_1' : function(){} };
-    listener_2 = { 'update_2' : function(){} };
+    listener_1 = { 'update_1' : function(object){} };
+    listener_2 = { 'update_2' : function(object){} };
 
     Navi.listen( notifier, listener_1, 'update_1' );
     Navi.listen( notifier, listener_2, 'update_2' );
@@ -70,5 +70,19 @@ describe('Navi', function() {
   it('should clear the register when clear_register is called', function() {
     Navi.clear_register();
     expect(Navi.inspect_register().length).toEqual(0);
+  });
+
+  it("should update the listener and its registered method if listen is called with a pre-registered listener", function() {
+
+    listener_1.new_method = function(object) {};
+
+    spyOn( listener_1, 'update_1' );
+    spyOn( listener_1, 'new_method' );
+
+    Navi.listen(notifier, listener_1, "new_method");
+    Navi.notify(notifier);
+
+    expect(listener_1.new_method).toHaveBeenCalledWith(notifier);
+    expect(listener_1.update_1).not.toHaveBeenCalledWith(notifier);
   });
 });

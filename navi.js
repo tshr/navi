@@ -39,14 +39,14 @@
   _Navi.listen = function(object, listener, method_name) {
 
     var listeners = register.get(object);
-    var listener_object = { "listener" : listener, "method_name" : method_name };
+    var listener_object = { 'listener' : listener, 'method_name' : method_name };
 
     if (listeners === null) {
       register.put(object, [listener_object]);
     } else {
       for (var i = 0; i < listeners.length; i++) {
-        // return if listener is already registered
-        if (listeners[i].listener === listener) return;
+        // remove listener if it is already registered
+        if (listeners[i].listener === listener) listeners.splice(i,1);
       }
       listeners.push(listener_object);
       register.put(object, listeners);
