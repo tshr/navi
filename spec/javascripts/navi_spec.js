@@ -30,6 +30,7 @@ describe('Navi', function() {
   });
 
   it('should return an array containing arrays of listener_1 and listener_2 and their registered function names when get_listeners is called with notifier', function() {
+
     var listeners = Navi.get_listeners(notifier);
     expect(listeners.length).toEqual(2);
 
@@ -38,6 +39,7 @@ describe('Navi', function() {
 
     expect(listeners[1].listener).toEqual(listener_2);
     expect(listeners[1].method_name).toEqual('update_2');
+
   });
 
   it("should remove a listener from an object's listeners when unlisten is called with the listener and the object", function() {
@@ -51,8 +53,10 @@ describe('Navi', function() {
   });
 
   it('should remove notifier from the registry when unregister is called with it', function() {
+
     Navi.unregister(notifier);
     expect(Navi.inspect_register().length).toEqual(0);
+
   });
 
   it("should return the register's entries when inspect_register is called", function() {
@@ -68,8 +72,10 @@ describe('Navi', function() {
   });
 
   it('should clear the register when clear_register is called', function() {
+
     Navi.clear_register();
     expect(Navi.inspect_register().length).toEqual(0);
+
   });
 
   it("should update the listener and its registered method if listen is called with a pre-registered listener", function() {
