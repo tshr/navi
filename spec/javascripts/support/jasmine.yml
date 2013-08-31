@@ -84,6 +84,6 @@ spec_dir:
 #
 # spec_helper: spec/support/jasmine_helper.rb
 #
-spec_helper: spec/support/jasmine_helper.rb
+#spec_helper: spec/support/jasmine_helper.rb
 
 
