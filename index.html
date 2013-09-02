@@ -10,17 +10,17 @@
 
     <script>
 
-      var form_object = { "name" : "" };
-      var span_object = {
+      var form_object = Navi({ "name" : "" });
+      var span_object = Navi({
         "update" : function(object) { $("#first_name_show").text(object.name) }
-      };
+      });
 
-      Navi.listen(form_object, span_object, "update");
+      span_object.listen(form_object, "update");
 
       $(function(){
         $( "input#first_name_input" ).on("input", function() {
           form_object.name = $(this).val();
-          Navi.notify(form_object);
+          form_object.notify();
         });
       });
 
@@ -36,16 +36,16 @@
     <script>
 
       var i = 0;
-      var circle_1_object = { "radius" : 100 };
-      var circle_2_object = { "update" : function(object){ $('#circle_2').attr('r', 201 - object.radius)} };
+      var circle_1_object = Navi({ "radius" : 100 });
+      var circle_2_object = Navi({ "update" : function(object){ $('#circle_2').attr('r', 201 - object.radius)} });
 
-      Navi.listen(circle_1_object, circle_2_object, "update");
+      circle_2_object.listen(circle_1_object, "update");
 
       setInterval(function(){
         if (i / 100 > (2 * Math.PI)) i = 0;
         circle_1_object.radius = Math.ceil((Math.sin(i / 100) + 1) * 100);
         $('#circle_1').attr('r', circle_1_object.radius);
-        Navi.notify(circle_1_object);
+        circle_1_object.notify();
         i++;
       }, 10);
 
@@ -61,26 +61,27 @@
     <script>
 
       $(function(){
-        var Messenger = function(svg_group) {
+        var Messenger = function(circle_group) {
           this.count = 0;
-          this.svg_group = svg_group;
+          this.circle_group = circle_group;
           this.update = function(object){
             this.count =  object.count + 1;
-            this.svg_group.children('text').text(this.count);
+            this.circle_group.children('text').text(this.count);
             var that = this;
-            setTimeout(function(){ Navi.notify(that) }, 750);
+            setTimeout(function(){ that.notify() }, 750);
           }
+          Navi(this);
         };
 
         var one   = new Messenger($('#message_circle_1'));
         var two   = new Messenger($('#message_circle_2'));
         var three = new Messenger($('#message_circle_3'));
 
-        Navi.listen(one, two, "update");
-        Navi.listen(two, three, "update");
-        Navi.listen(three, one, "update");
+        two.listen(one, "update");
+        three.listen(two, "update");
+        one.listen(three, "update");
 
-        Navi.notify(one);
+        one.notify();
       });
 
     </script>
