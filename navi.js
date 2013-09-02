@@ -39,7 +39,7 @@
 
       if (typeof this.listeners !== "undefined") {
         var listeners = this.listeners;
-        // Call stored method names on stored listeners and pass in the notifying object
+        // call stored method names on stored listeners and pass in the notifying object
         for (var i = 0; i < listeners.length; i++) {
           var listener_object = listeners[i];
           listener_object.listener[ listener_object.method_name ](this);

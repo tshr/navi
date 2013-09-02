@@ -11,10 +11,7 @@
     <script>
 
       var form_object = Navi({ "name" : "" });
-      var span_object = Navi({
-        "update" : function(object) { $("#first_name_show").text(object.name) }
-      });
-
+      var span_object = Navi({ "update" : function(object) { $("#first_name_show").text(object.name) } });
       span_object.listen(form_object, "update");
 
       $(function(){
