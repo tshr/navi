@@ -5,9 +5,9 @@ A tiny module for implementing publication / subscription on javascript objects.
 It creates a single global function (Navi) that augments passed in objects
 with the following methods:
 
-- listen(publishing_object, name_of_method_to_be_called)
-- unlisten(publishing_object)
-- notify() /* calls the registered methods on all of an object's listeners */
+- listen(object_to_listen_to, name_of_method_to_be_called)
+- unlisten(listened_object)
+- notify()   /* calls the registered methods on all of an object's listeners */
 - get_listeners()
 - clear_listeners()
 
