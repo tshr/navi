@@ -42,6 +42,7 @@ describe('Navi', function() {
 
     expect(listener_1.new_method).toHaveBeenCalledWith(notifier);
     expect(listener_1.update_1).not.toHaveBeenCalledWith(notifier);
+
   });
 
   it("should return an array of object's listeners and their registered method names when get_listeners is called on the notifier", function() {
@@ -70,6 +71,7 @@ describe('Navi', function() {
 
     expect(listeners.length).toEqual(1);
     expect(listeners[0].listener).toEqual(listener_2);
+
   });
 
   it("should delete the object's listeners attribute if unlisten is called on the last remaining listener", function() {
@@ -78,6 +80,7 @@ describe('Navi', function() {
     listener_2.unlisten(notifier);
 
     expect(typeof notifier.listeners).toEqual("undefined");
+
   });
 
   it("should delete an object's listeners attribute when clear_listeners is called", function() {
