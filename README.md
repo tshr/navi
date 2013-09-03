@@ -19,7 +19,7 @@ For notifiers
 - clear_listeners()
 
 Notes
-=====
+-----
 
 - Listeners are stored on the notifying object in an array under the listeners attribute.
 - Notify() calls the registered method on each listener of the object and passes the notifying object to each as a parameter.
