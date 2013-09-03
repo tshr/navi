@@ -4,12 +4,46 @@
     <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
     <script src="navi.js"></script>
     <title>Navi.js Examples</title>
+    <style>
+      h1, h2 {
+        text-align: center;
+      }
+      pre {
+        background-color: #e8f0ff;
+        padding: 15px;
+        width: 70%;
+        margin: 0 auto;
+        border-radius: 8px;
+      }
+      .example {
+        margin: 50px 0;
+      }
+      .hello_you div {
+        text-align: center;
+      }
+      .hello_you form {
+        width: 20%;
+        margin: 5px auto 0 auto;
+      }
+      .hello_you form input {
+        width: 100%;
+        padding: 5px;
+        text-align:center;
+      }
+      .example svg{
+        display: block;
+        margin: 0 auto;
+      }
+    </style>
   </head>
   <body>
 
-    <h2>Example 1: Hello You!</h2>
+    <h1>Navi.js Examples</h1>
+    <hr>
+    <h2>Hello You!</h2>
 
     <pre>
+
       var form_object = Navi({ "name" : "" });
       var span_object = Navi({ "update" : function(object) { $("#first_name_show").text(object.name) } });
       span_object.listen(form_object, "update");
@@ -21,8 +55,8 @@
         });
       });
 
-      &lt;span&gt;Hello &lt;span id="first_name_show"&gt;&lt;/span&gt;!&lt;/span&gt;
-      &lt;form>
+      &lt;div&gt;Hello &lt;span id="first_name_show"&gt;&lt;/span&gt;&lt;/div&gt;
+      &lt;form&gt;
         &lt;input type="text" name="first_name" id="first_name_input" placeholder="Enter your name" /&gt;
       &lt;/form&gt;
     </pre>
@@ -40,12 +74,14 @@
       });
     </script>
 
-    <span>Hello <span id="first_name_show"></span>!</span>
-    <form>
-      <input type="text" name="first_name" id="first_name_input" placeholder="Enter your name" />
-    </form>
+    <div class="example hello_you">
+      <div>Hello <span id="first_name_show"></span></div>
+      <form>
+        <input type="text" name="first_name" id="first_name_input" placeholder="Enter your name" />
+      </form>
+    </div>
 
-    <h2>Example 2: Twin Circles</h2>
+    <h2>Reflecting Circles</h2>
 
     <pre>
 
@@ -88,14 +124,17 @@
 
     </script>
 
-    <svg width="606" height="404">
-      <circle cx="202" cy="202" r="100" stroke="black" stroke-width="1" fill="red" id="circle_1" />
-      <circle cx="404" cy="202" r="100" stroke="black" stroke-width="1" fill="blue" id="circle_2" />
-    </svg>
+    <div class="example reflecting_circles">
+      <svg width="606" height="404">
+        <circle cx="202" cy="202" r="100" stroke="black" stroke-width="1" fill="red" id="circle_1" />
+        <circle cx="404" cy="202" r="100" stroke="black" stroke-width="1" fill="blue" id="circle_2" />
+      </svg>
+    </div>
 
-    <h2>Example 3: Daisy Chain</h2>
+    <h2>Daisy Chain</h2>
 
     <pre>
+
       $(function(){
         var Messenger = function(circle_group) {
           this.count = 0;
@@ -120,18 +159,18 @@
         one.notify();
       });
 
-      &lt;svg width="606" height="404"&gt;
+      &lt;svg width="388" height="104"&gt;
         &lt;g id="message_circle_1"&gt;
-          &lt;circle r="50" stroke="black" stroke-width="1" fill="green" transform="translate(52, 52)"/&gt;
-          &lt;text fill="black" text-anchor="middle"  y="52" x="52" &gt;0&lt;/text&gt;
+          &lt;circle r="50" stroke="black" stroke-width="1" fill="#5dc97d" transform="translate(52, 52)"/&gt;
+          &lt;text fill="black" text-anchor="middle" y="62" x="52" font-size="40px"&gt;0&lt;/text&gt;
         &lt;/g&gt;
         &lt;g id="message_circle_2"&gt;
-          &lt;circle r="50" stroke="black" stroke-width="1" fill="green" transform="translate(154, 154)"/&gt;
-          &lt;text fill="black" text-anchor="middle"  y="154" x="154" &gt;0&lt;/text&gt;
+          &lt;circle r="50" stroke="black" stroke-width="1" fill="#5dc97d" transform="translate(194, 52)"/&gt;
+          &lt;text fill="black" text-anchor="middle" y="62" x="194" font-size="40px"&gt;0&lt;/text&gt;
         &lt;/g&gt;
         &lt;g id="message_circle_3"&gt;
-          &lt;circle r="50" stroke="black" stroke-width="1" fill="green" transform="translate(254, 254)"/&gt;
-          &lt;text fill="black" text-anchor="middle"  y="256" x="256" &gt;0&lt;/text&gt;
+          &lt;circle r="50" stroke="black" stroke-width="1" fill="#5dc97d" transform="translate(336, 52)"/&gt;
+          &lt;text fill="black" text-anchor="middle" y="62" x="336" font-size="40px"&gt;0&lt;/text&gt;
         &lt;/g&gt;
       &lt;/svg&gt;
     </pre>
@@ -163,21 +202,22 @@
       });
 
     </script>
-
-    <svg width="606" height="404">
-      <g id="message_circle_1">
-        <circle r="50" stroke="black" stroke-width="1" fill="green" transform="translate(52, 52)"/>
-        <text fill="black" text-anchor="middle"  y="52" x="52" >0</text>
-      </g>
-      <g id="message_circle_2">
-        <circle r="50" stroke="black" stroke-width="1" fill="green" transform="translate(154, 154)"/>
-        <text fill="black" text-anchor="middle"  y="154" x="154" >0</text>
-      </g>
-      <g id="message_circle_3">
-        <circle r="50" stroke="black" stroke-width="1" fill="green" transform="translate(254, 254)"/>
-        <text fill="black" text-anchor="middle"  y="256" x="256" >0</text>
-      </g>
-    </svg>
+    <div class="example daisy_chain">
+      <svg width="388" height="104">
+        <g id="message_circle_1">
+          <circle r="50" stroke="black" stroke-width="1" fill="#5dc97d" transform="translate(52, 52)"/>
+          <text fill="black" text-anchor="middle" y="62" x="52" font-size="40px">0</text>
+        </g>
+        <g id="message_circle_2">
+          <circle r="50" stroke="black" stroke-width="1" fill="#5dc97d" transform="translate(194, 52)"/>
+          <text fill="black" text-anchor="middle" y="62" x="194" font-size="40px">0</text>
+        </g>
+        <g id="message_circle_3">
+          <circle r="50" stroke="black" stroke-width="1" fill="#5dc97d" transform="translate(336, 52)"/>
+          <text fill="black" text-anchor="middle" y="62" x="336" font-size="40px">0</text>
+        </g>
+      </svg>
+    </div>
 
   </body>
 </html>
