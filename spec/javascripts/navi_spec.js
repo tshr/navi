@@ -22,7 +22,7 @@ describe('Navi', function() {
     spyOn( listener_1, 'update_1' );
     spyOn( listener_2, 'update_2' );
 
-    notifier.notify()
+    notifier.notify();
 
     expect(listener_1.update_1).toHaveBeenCalledWith(notifier);
     expect(listener_2.update_2).toHaveBeenCalledWith(notifier);

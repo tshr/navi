@@ -16,15 +16,15 @@
 
     base_object.add_listener = function(listener, method_name) {
       listeners.push({ 'listener' : listener, 'method_name' : method_name });
-    }
+    };
 
     base_object.remove_listener = function(listener) {
 
       for (var i = 0; i < listeners.length; i++) {
         if (listeners[i].listener === listener) listeners.splice(i, 1);
         break;
-      };
-    }
+      }
+    };
 
     base_object.listen = function(object, method_name) {
 
