@@ -14,8 +14,8 @@
       return listeners;
     };
 
-    base_object.add_listener = function(listener_object) {
-      listeners.push(listener_object);
+    base_object.add_listener = function(listener, method_name) {
+      listeners.push({ 'listener' : listener, 'method_name' : method_name });
     }
 
     base_object.remove_listener = function(listener) {
@@ -29,8 +29,7 @@
     base_object.listen = function(object, method_name) {
 
       object.remove_listener(this);
-      var listener_object = { 'listener' : this, 'method_name' : method_name };
-      object.add_listener(listener_object);
+      object.add_listener(this, method_name);
     };
 
     base_object.unlisten = function(object) {

@@ -58,19 +58,47 @@ describe('Navi', function() {
 
   });
 
-  it("should return an empty array of get_listeners is called on an object that has no listeners", function() {
+  it("should return an empty array if get_listeners is called on an object that has no listeners", function() {
+
     var has_no_listeners = Navi({});
     expect(has_no_listeners.get_listeners()).toEqual([]);
+
   });
 
   it("should remove a listener from an object's listeners when unlisten is called on the listener with the object", function() {
 
-    var listeners = notifier.get_listeners();
-
     listener_1.unlisten(notifier);
+    var listeners = notifier.get_listeners();
 
     expect(listeners.length).toEqual(1);
     expect(listeners[0].listener).toEqual(listener_2);
+
+  });
+
+  it("should remove a listener from an object when remove_listener is called", function() {
+
+    notifier.remove_listener(listener_1);
+    var listeners = notifier.get_listeners();
+
+    expect(listeners.length).toEqual(1);
+    expect(listeners[0].listener).toEqual(listener_2);
+
+  });
+
+  it("should add a listener object and its method when add_listener() is called on an object", function() {
+    var new_listener = Navi({});
+    var listeners = notifier.get_listeners();
+
+    notifier.add_listener(new_listener, "update");
+    expect(listeners[listeners.length - 1].listener).toEqual(new_listener);
+    expect(listeners[listeners.length - 1].method_name).toEqual("update");
+
+  });
+
+  it("should empty the listeners array when clear_listeners is called on an object", function() {
+
+    notifier.clear_listeners();
+    expect(notifier.get_listeners()).toEqual([]);
 
   });
 });
