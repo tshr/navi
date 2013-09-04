@@ -6,19 +6,19 @@
 
 (function(){
 
-  this.Navi = function(base_object) {
+  this.Navi = function(that) {
 
     var listeners = [];
 
-    base_object.get_listeners = function() {
+    that.get_listeners = function() {
       return listeners;
     };
 
-    base_object.add_listener = function(listener, method_name) {
+    that.add_listener = function(listener, method_name) {
       listeners.push({ 'listener' : listener, 'method_name' : method_name });
     };
 
-    base_object.remove_listener = function(listener) {
+    that.remove_listener = function(listener) {
 
       for (var i = 0; i < listeners.length; i++) {
         if (listeners[i].listener === listener) listeners.splice(i, 1);
@@ -26,17 +26,17 @@
       }
     };
 
-    base_object.listen = function(object, method_name) {
+    that.listen = function(object, method_name) {
 
       object.remove_listener(this);
       object.add_listener(this, method_name);
     };
 
-    base_object.unlisten = function(object) {
+    that.unlisten = function(object) {
       object.remove_listener(this);
     };
 
-    base_object.notify = function() {
+    that.notify = function() {
 
       var listeners = this.get_listeners();
       // call stored method names on stored listeners and pass in the notifying object
@@ -46,11 +46,11 @@
       }
     };
 
-    base_object.clear_listeners = function() {
+    that.clear_listeners = function() {
       listeners = [];
     };
 
-    return base_object;
+    return that;
   };
 
 }());
