@@ -14,7 +14,7 @@ describe('Navi', function() {
   });
 
   afterEach(function() {
-    delete notifier.listeners;
+    notifier.clear_listeners();
   });
 
   it('should call the registered methods on its listeners when notify is called on the publishing object', function() {
@@ -71,22 +71,6 @@ describe('Navi', function() {
 
     expect(listeners.length).toEqual(1);
     expect(listeners[0].listener).toEqual(listener_2);
-
-  });
-
-  it("should delete the object's listeners attribute if unlisten is called on the last remaining listener", function() {
-
-    listener_1.unlisten(notifier);
-    listener_2.unlisten(notifier);
-
-    expect(typeof notifier.listeners).toEqual("undefined");
-
-  });
-
-  it("should delete an object's listeners attribute when clear_listeners is called", function() {
-
-    notifier.clear_listeners();
-    expect(typeof notifier.listeners).toEqual("undefined");
 
   });
 });

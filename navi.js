@@ -6,56 +6,52 @@
 
 (function(){
 
-  this.Navi = function(that) {
+  this.Navi = function(base_object) {
 
-    that.listen = function(object, method_name) {
+    var listeners = [];
+
+    base_object.get_listeners = function() {
+      return listeners;
+    };
+
+    base_object.add_listener = function(listener_object) {
+      listeners.push(listener_object);
+    }
+
+    base_object.remove_listener = function(listener) {
+
+      for (var i = 0; i < listeners.length; i++) {
+        if (listeners[i].listener === listener) listeners.splice(i, 1);
+        break;
+      };
+    }
+
+    base_object.listen = function(object, method_name) {
+
+      object.remove_listener(this);
       var listener_object = { 'listener' : this, 'method_name' : method_name };
+      object.add_listener(listener_object);
+    };
 
-      if (typeof object.listeners === "undefined") {
-        object.listeners = [listener_object];
-      } else {
-        // remove listener if it is already registered
-        for (var i = 0; i < object.listeners.length; i++) {
-          if (object.listeners[i].listener === this) object.listeners.splice(i,1);
-        }
-        object.listeners.push(listener_object);
+    base_object.unlisten = function(object) {
+      object.remove_listener(this);
+    };
+
+    base_object.notify = function() {
+
+      var listeners = this.get_listeners();
+      // call stored method names on stored listeners and pass in the notifying object
+      for (var i = 0; i < listeners.length; i++) {
+        var listener_object = listeners[i];
+        listener_object.listener[ listener_object.method_name ](this);
       }
     };
 
-    that.unlisten = function(object) {
-
-      if (typeof object.listeners !== "undefined") {
-        for (var i = 0; i < object.listeners.length; i++) {
-          if (object.listeners[i].listener === this) {
-            object.listeners.splice(i,1);
-            break;
-          }
-        }
-        if (object.listeners.length === 0) delete object.listeners;
-      }
+    base_object.clear_listeners = function() {
+      listeners = [];
     };
 
-    that.notify = function() {
-
-      if (typeof this.listeners !== "undefined") {
-        var listeners = this.listeners;
-        // call stored method names on stored listeners and pass in the notifying object
-        for (var i = 0; i < listeners.length; i++) {
-          var listener_object = listeners[i];
-          listener_object.listener[ listener_object.method_name ](this);
-        }
-      }
-    };
-
-    that.get_listeners = function() {
-      return typeof (this.listeners) === "undefined" ? [] : this.listeners;
-    };
-
-    that.clear_listeners = function() {
-      delete this.listeners;
-    };
-
-    return that;
+    return base_object;
   };
 
 }());
