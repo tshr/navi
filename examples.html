@@ -50,7 +50,11 @@
     <pre>
 
       var form_object = Navi({ "name" : "" });
-      var span_object = Navi({ "update" : function(object) { $("#first_name_show").text(object.name) } });
+      
+      var span_object = Navi({ "update" : function(object) {
+        $("#first_name_show").text(object.name) }
+      });
+      
       span_object.listen(form_object, "update");
 
       $(function(){
@@ -68,7 +72,11 @@
 
     <script>
       var form_object = Navi({ "name" : "" });
-      var span_object = Navi({ "update" : function(object) { $("#first_name_show").text(object.name) } });
+      
+      var span_object = Navi({ "update" : function(object) {
+        $("#first_name_show").text(object.name) }
+      });
+      
       span_object.listen(form_object, "update");
 
       $(function(){
@@ -92,7 +100,10 @@
 
       var i = 0;
       var circle_1_object = Navi({ "radius" : 100 });
-      var circle_2_object = Navi({ "update" : function(object){ $('#circle_2').attr('r', 201 - object.radius)} });
+      
+      var circle_2_object = Navi({ "update" : function(object){
+        $('#circle_2').attr('r', 201 - object.radius)}
+      });
 
       circle_2_object.listen(circle_1_object, "update");
 
@@ -115,7 +126,10 @@
 
       var i = 0;
       var circle_1_object = Navi({ "radius" : 100 });
-      var circle_2_object = Navi({ "update" : function(object){ $('#circle_2').attr('r', 201 - object.radius)} });
+      
+      var circle_2_object = Navi({ "update" : function(object){
+        $('#circle_2').attr('r', 201 - object.radius)}
+      });
 
       circle_2_object.listen(circle_1_object, "update");
 
