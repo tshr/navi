@@ -48,19 +48,17 @@
     <h2>Hello You!</h2>
 
     <pre>
-      var form_object = Navi({ "name" : "" });
-      
-      var span_object = Navi({ "update" : function(object) {
-        $("#first_name_show").text(object.name) }
-      });
-      
+      var form_object = Navi($( "input#first_name_input" ));
+      var span_object = Navi($("#first_name_show"));
+
+      span_object.update = function(object) {
+        this.text(object.val())
+      };
+
       span_object.listen(form_object, "update");
 
-      $(function(){
-        $( "input#first_name_input" ).on("input", function() {
-          form_object.name = $(this).val();
-          form_object.notify();
-        });
+      form_object.on("input", function() {
+        form_object.notify();
       });
 
       &lt;div&gt;Hello &lt;span id="first_name_show"&gt;&lt;/span&gt;&lt;/div&gt;
@@ -70,17 +68,17 @@
     </pre>
 
     <script>
-      var form_object = Navi({ "name" : "" });
-      
-      var span_object = Navi({ "update" : function(object) {
-        $("#first_name_show").text(object.name) }
-      });
-      
-      span_object.listen(form_object, "update");
-
       $(function(){
-        $( "input#first_name_input" ).on("input", function() {
-          form_object.name = $(this).val();
+        var form_object = Navi($( "input#first_name_input" ));
+        var span_object = Navi($("#first_name_show"));
+
+        span_object.update = function(object) {
+          this.text(object.val())
+        };
+
+        span_object.listen(form_object, "update");
+
+        form_object.on("input", function() {
           form_object.notify();
         });
       });
@@ -98,7 +96,7 @@
     <pre>
       var i = 0;
       var circle_1_object = Navi({ "radius" : 100 });
-      
+
       var circle_2_object = Navi({ "update" : function(object){
         $('#circle_2').attr('r', 201 - object.radius)}
       });
@@ -123,7 +121,7 @@
 
       var i = 0;
       var circle_1_object = Navi({ "radius" : 100 });
-      
+
       var circle_2_object = Navi({ "update" : function(object){
         $('#circle_2').attr('r', 201 - object.radius)}
       });
