@@ -48,18 +48,19 @@
     <h2>Hello You!</h2>
 
     <pre>
+      $(function(){
+        var form_object = Navi( $( "input#first_name_input" ));
+        var span_object = Navi( $("#first_name_show") );
 
-      var form_object = Navi( $( "input#first_name_input") );
-      var span_object = Navi( $("#first_name_show") );
+        span_object.update = function(object) {
+          this.text(object.val() + "!");
+        };
 
-      span_object.update = function(object) {
-        this.text(object.val())
-      };
+        span_object.listen(form_object, "update");
 
-      span_object.listen(form_object, "update");
-
-      form_object.on("input", function() {
-        form_object.notify();
+        form_object.keyup(function() {
+          form_object.notify();
+        });
       });
 
       &lt;div&gt;Hello &lt;span id="first_name_show"&gt;&lt;/span&gt;&lt;/div&gt;
@@ -68,23 +69,6 @@
       &lt;/form&gt;
     </pre>
 
-    <script>
-      $(function(){
-        var form_object = Navi( $( "input#first_name_input" ));
-        var span_object = Navi( $("#first_name_show") );
-
-        span_object.update = function(object) {
-          this.text(object.val())
-        };
-
-        span_object.listen(form_object, "update");
-
-        form_object.on("input", function() {
-          form_object.notify();
-        });
-      });
-    </script>
-
     <div class="example hello_you">
       <div>Hello <span id="first_name_show"></span></div>
       <form>
@@ -92,26 +76,47 @@
       </form>
     </div>
 
+    <script>
+      $(function(){
+        var form_object = Navi( $( "input#first_name_input" ));
+        var span_object = Navi( $("#first_name_show") );
+
+        span_object.update = function(object) {
+          this.text(object.val() + "!");
+        };
+
+        span_object.listen(form_object, "update");
+
+        form_object.keyup(function() {
+          form_object.notify();
+        });
+      });
+    </script>
+
+
+
     <h2>Reflecting Circles</h2>
 
     <pre>
-      var i = 0;
-      var circle_1_object = Navi({ "radius" : 100 });
+      $(function(){
+        var i = 0;
+        var circle_1_object = Navi({ "radius" : 100 });
 
-      var circle_2_object = Navi({ "update" : function(object) {
-          $('#circle_2').attr('r', 201 - object.radius)
-        }
+        var circle_2_object = Navi({ "update" : function(object) {
+            $('#circle_2').attr('r', 201 - object.radius)
+          }
+        });
+
+        circle_2_object.listen(circle_1_object, "update");
+
+        setInterval(function(){
+          if (i / 100 > (2 * Math.PI)) i = 0;
+          circle_1_object.radius = Math.ceil((Math.sin(i / 100) + 1) * 100);
+          $('#circle_1').attr('r', circle_1_object.radius);
+          circle_1_object.notify();
+          i++;
+        }, 10);
       });
-
-      circle_2_object.listen(circle_1_object, "update");
-
-      setInterval(function(){
-        if (i / 100 > (2 * Math.PI)) i = 0;
-        circle_1_object.radius = Math.ceil((Math.sin(i / 100) + 1) * 100);
-        $('#circle_1').attr('r', circle_1_object.radius);
-        circle_1_object.notify();
-        i++;
-      }, 10);
 
       &lt;svg width="606" height="404"&gt;
         &lt;circle cx="202" cy="202" r="100" stroke="black" stroke-width="1" fill="#D74B4B" id="circle_1" /&gt;
@@ -120,25 +125,25 @@
     </pre>
 
     <script>
+      $(function(){
+        var i = 0;
+        var circle_1_object = Navi({ "radius" : 100 });
 
-      var i = 0;
-      var circle_1_object = Navi({ "radius" : 100 });
+        var circle_2_object = Navi({ "update" : function(object) {
+            $('#circle_2').attr('r', 201 - object.radius)
+          }
+        });
 
-      var circle_2_object = Navi({ "update" : function(object) {
-          $('#circle_2').attr('r', 201 - object.radius)
-        }
+        circle_2_object.listen(circle_1_object, "update");
+
+        setInterval(function(){
+          if (i / 100 > (2 * Math.PI)) i = 0;
+          circle_1_object.radius = Math.ceil((Math.sin(i / 100) + 1) * 100);
+          $('#circle_1').attr('r', circle_1_object.radius);
+          circle_1_object.notify();
+          i++;
+        }, 10);
       });
-
-      circle_2_object.listen(circle_1_object, "update");
-
-      setInterval(function(){
-        if (i / 100 > (2 * Math.PI)) i = 0;
-        circle_1_object.radius = Math.ceil((Math.sin(i / 100) + 1) * 100);
-        $('#circle_1').attr('r', circle_1_object.radius);
-        circle_1_object.notify();
-        i++;
-      }, 10);
-
     </script>
 
     <div class="example reflecting_circles">
