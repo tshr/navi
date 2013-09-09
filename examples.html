@@ -30,7 +30,7 @@
         width: 20%;
         margin: 5px auto 0 auto;
       }
-      .hello_you form input {
+      #name_input {
         width: 100%;
         padding: 5px;
         text-align:center;
@@ -49,51 +49,51 @@
 
     <pre>
       $(function(){
-        var form_object = Navi( $( "input#first_name_input" ));
+        var input_object = Navi( $( "input#first_name_input" ));
         var span_object = Navi( $("#first_name_show") );
 
         span_object.update = function(object) {
-          this.text(object.val() + "!");
+          var name = object.val();
+          this.text(name.length > 0 ? name + "!" : "");
         };
 
-        span_object.listen(form_object, "update");
+        span_object.listen(input_object, "update");
 
         form_object.keyup(function() {
-          form_object.notify();
+          input_object.notify();
         });
       });
 
-      &lt;div&gt;Hello &lt;span id="first_name_show"&gt;&lt;/span&gt;&lt;/div&gt;
+      &lt;div&gt;Hello &lt;span id="name_show"&gt;&lt;/span&gt;&lt;/div&gt;
       &lt;form&gt;
-        &lt;input type="text" name="first_name" id="first_name_input" placeholder="Enter your name" /&gt;
+        &lt;input type="text" name="name_input" id="name_input" placeholder="Enter your name" /&gt;
       &lt;/form&gt;
     </pre>
 
     <div class="example hello_you">
-      <div>Hello <span id="first_name_show"></span></div>
+      <div>Hello <span id="name_show"></span></div>
       <form>
-        <input type="text" name="first_name" id="first_name_input" placeholder="Enter your name" />
+        <input type="text" name="name_input" id="name_input" placeholder="Enter your name" />
       </form>
     </div>
 
     <script>
       $(function(){
-        var form_object = Navi( $( "input#first_name_input" ));
-        var span_object = Navi( $("#first_name_show") );
+        var input_object = Navi( $( "#name_input" ));
+        var span_object = Navi( $("#name_show") );
 
         span_object.update = function(object) {
-          this.text(object.val() + "!");
+          var name = object.val();
+          this.text(name.length > 0 ? name + "!" : "");
         };
 
-        span_object.listen(form_object, "update");
+        span_object.listen(input_object, "update");
 
-        form_object.keyup(function() {
-          form_object.notify();
+        input_object.keyup(function() {
+          input_object.notify();
         });
       });
     </script>
-
-
 
     <h2>Reflecting Circles</h2>
 
