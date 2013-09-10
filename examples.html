@@ -121,7 +121,7 @@
         circle_2_object.listen(circle_1_object, "change");
 
         var i = 0;
-        var radius = 100;
+        var radius;
         setInterval(function(){
           if (i / 100 > (2 * Math.PI)) i = 0;
           radius = Math.ceil((Math.sin(i / 100) + 1) * 100);
@@ -150,7 +150,7 @@
         circle_2_object.listen(circle_1_object, "change");
 
         var i = 0;
-        var radius = 100;
+        var radius;
         setInterval(function(){
           if (i / 100 > (2 * Math.PI)) i = 0;
           radius = Math.ceil((Math.sin(i / 100) + 1) * 100);
