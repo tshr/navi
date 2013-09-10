@@ -111,20 +111,21 @@
 
     <pre>
       $(function(){
+        var circle_1_object = Navi($("#circle_1"));
+        var circle_2_object = Navi($("#circle_2"));
+
+        circle_2_object.change = function(object) {
+          this.attr('r', 201 - object.attr('r'))
+        };
+
+        circle_2_object.listen(circle_1_object, "change");
+
         var i = 0;
-        var circle_1_object = Navi({ "radius" : 100 });
-
-        var circle_2_object = Navi({ "update" : function(object) {
-            $('#circle_2').attr('r', 201 - object.radius)
-          }
-        });
-
-        circle_2_object.listen(circle_1_object, "update");
-
+        var radius = 100;
         setInterval(function(){
           if (i / 100 > (2 * Math.PI)) i = 0;
-          circle_1_object.radius = Math.ceil((Math.sin(i / 100) + 1) * 100);
-          $('#circle_1').attr('r', circle_1_object.radius);
+          radius = Math.ceil((Math.sin(i / 100) + 1) * 100);
+          circle_1_object.attr('r', radius);
           circle_1_object.notify();
           i++;
         }, 10);
@@ -138,20 +139,22 @@
 
     <script>
       $(function(){
+
+        var circle_1_object = Navi($("#circle_1"));
+        var circle_2_object = Navi($("#circle_2"));
+
+        circle_2_object.change = function(object) {
+          this.attr('r', 201 - object.attr('r'))
+        };
+
+        circle_2_object.listen(circle_1_object, "change");
+
         var i = 0;
-        var circle_1_object = Navi({ "radius" : 100 });
-
-        var circle_2_object = Navi({ "update" : function(object) {
-            $('#circle_2').attr('r', 201 - object.radius)
-          }
-        });
-
-        circle_2_object.listen(circle_1_object, "update");
-
+        var radius = 100;
         setInterval(function(){
           if (i / 100 > (2 * Math.PI)) i = 0;
-          circle_1_object.radius = Math.ceil((Math.sin(i / 100) + 1) * 100);
-          $('#circle_1').attr('r', circle_1_object.radius);
+          radius = Math.ceil((Math.sin(i / 100) + 1) * 100);
+          circle_1_object.attr('r', radius);
           circle_1_object.notify();
           i++;
         }, 10);
