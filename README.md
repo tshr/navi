@@ -31,4 +31,4 @@ Notes
 Examples
 --------
 
-http://192.241.206.124/navi/examples.html
+http://tshr.io/navi/examples.html
