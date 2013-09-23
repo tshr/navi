@@ -120,6 +120,8 @@
 
     <pre>
       $(function(){
+
+        var radius, i = 0, Pi = Math.PI;
         var circle_1_object = Navi($("#circle_1"));
         var circle_2_object = Navi($("#circle_2"));
 
@@ -128,9 +130,6 @@
         };
 
         circle_2_object.listen(circle_1_object, "change");
-
-        var radius;
-        var i = 0, Pi = Math.PI;
 
         setInterval(function(){
           if (i / 100 > (2 * Pi)) i = 0;
@@ -150,6 +149,7 @@
     <script>
       $(function(){
 
+        var radius, i = 0, Pi = Math.PI;
         var circle_1_object = Navi($("#circle_1"));
         var circle_2_object = Navi($("#circle_2"));
 
@@ -158,9 +158,6 @@
         };
 
         circle_2_object.listen(circle_1_object, "change");
-
-        var radius;
-        var i = 0, Pi = Math.PI;
 
         setInterval(function(){
           if (i / 100 > (2 * Pi)) i = 0;
