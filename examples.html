@@ -184,14 +184,19 @@
       $(function(){
 
         var Messenger = function(circle_group) {
+
           this.count = 0;
           this.circle_group = circle_group;
+
           this.update = function(object){
+
+            var that = this;
+
             this.count =  object.count + 1;
             this.circle_group.children('text').text(this.count);
-            var that = this;
             setTimeout(function(){ that.notify() }, 750);
           }
+
           Navi(this);
         };
 
@@ -227,14 +232,19 @@
       $(function(){
 
         var Messenger = function(circle_group) {
+
           this.count = 0;
           this.circle_group = circle_group;
+
           this.update = function(object){
+
+            var that = this;
+
             this.count =  object.count + 1;
             this.circle_group.children('text').text(this.count);
-            var that = this;
             setTimeout(function(){ that.notify() }, 750);
           }
+
           Navi(this);
         };
 
