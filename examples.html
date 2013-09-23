@@ -71,8 +71,8 @@
     <pre>
       $(function(){
 
-        var input_object = Navi( $( "input#first_name_input" ));
-        var span_object = Navi( $("#first_name_show") );
+        var input_object = Navi( $( "#name_input" )),
+            span_object = Navi( $("#name_show") );
 
         span_object.update = function(object) {
           var name = object.val();
@@ -102,8 +102,8 @@
     <script>
       $(function(){
 
-        var input_object = Navi( $( "#name_input" ));
-        var span_object = Navi( $("#name_show") );
+        var input_object = Navi( $( "#name_input" )),
+            span_object = Navi( $("#name_show") );
 
         span_object.update = function(object) {
           var name = object.val();
@@ -123,9 +123,9 @@
     <pre>
       $(function(){
 
-        var radius, i = 0, Pi = Math.PI;
-        var circle_1_object = Navi($("#circle_1"));
-        var circle_2_object = Navi($("#circle_2"));
+        var radius, i = 0, Pi = Math.PI,
+            circle_1_object = Navi($("#circle_1")),
+            circle_2_object = Navi($("#circle_2"));
 
         circle_2_object.change = function(object) {
           this.attr('r', 201 - object.attr('r'))
@@ -151,9 +151,9 @@
     <script>
       $(function(){
 
-        var radius, i = 0, Pi = Math.PI;
-        var circle_1_object = Navi($("#circle_1"));
-        var circle_2_object = Navi($("#circle_2"));
+        var radius, i = 0, Pi = Math.PI,
+            circle_1_object = Navi($("#circle_1")),
+            circle_2_object = Navi($("#circle_2"));
 
         circle_2_object.change = function(object) {
           this.attr('r', 201 - object.attr('r'))
@@ -200,9 +200,9 @@
           Navi(this);
         };
 
-        var one   = new Messenger($('#message_circle_1'));
-        var two   = new Messenger($('#message_circle_2'));
-        var three = new Messenger($('#message_circle_3'));
+        var one   = new Messenger($('#message_circle_1')),
+            two   = new Messenger($('#message_circle_2')),
+            three = new Messenger($('#message_circle_3'));
 
         two.listen(one, "update");
         three.listen(two, "update");
@@ -248,9 +248,9 @@
           Navi(this);
         };
 
-        var one   = new Messenger($('#message_circle_1'));
-        var two   = new Messenger($('#message_circle_2'));
-        var three = new Messenger($('#message_circle_3'));
+        var one   = new Messenger($('#message_circle_1')),
+            two   = new Messenger($('#message_circle_2')),
+            three = new Messenger($('#message_circle_3'));
 
         two.listen(one, "update");
         three.listen(two, "update");
