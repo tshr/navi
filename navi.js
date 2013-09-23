@@ -10,7 +10,7 @@
 
     var listeners = [];
 
-    var get_listeners = function() { //defined locally first because it's called privately by notify
+    var get_listeners = function() { // defined locally first because it's called privately by notify
       return listeners;
     };
 
