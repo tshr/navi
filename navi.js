@@ -10,9 +10,11 @@
 
     var listeners = [];
 
-    that.get_listeners = function() {
+    var get_listeners = function() { //defined locally first because it's called privately by notify
       return listeners;
     };
+
+    that.get_listeners = get_listeners;
 
     that.add_listener = function(listener, method_name) {
       listeners.push({ 'listener' : listener, 'method_name' : method_name });
@@ -38,7 +40,7 @@
 
     that.notify = function() {
 
-      var listeners = this.get_listeners();
+      var listeners = get_listeners();
       // call stored method names on stored listeners and pass in the notifying object
       for (var i = 0; i < listeners.length; i++) {
         var listener_object = listeners[i];
