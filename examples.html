@@ -5,6 +5,7 @@
     <script src="navi.min.js"></script>
     <title>Navi.js Examples</title>
     <link href='http://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
+    <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
 
     <style>
       :root {
@@ -16,28 +17,33 @@
       }
 
       h2 {
-        font-size: 2.5em;
+        font-size: 1.75em;
+        padding-bottom: 10px;
       }
 
-      h1, h2 {
+      h1 {
         text-align: center;
       }
 
-      pre {
-        background-color: #d8e0ef;
-        padding: 15px;
-        width: 90%;
-        margin: 0 auto;
+      pre.prettyprint {
+        border: 1px #d8d8d8 solid;
+        padding: 20px 10px 10px 10px;
         border-radius: 8px;
         white-space: pre-wrap;
         white-space: -moz-pre-wrap;
         white-space: -pre-wrap;
         white-space: -o-pre-wrap;
         word-wrap: break-word;
+        background-color: #f9f9fb;
+      }
+
+      h2, pre {
+        width: 90%;
+        margin: 0 auto;
       }
 
       .example {
-        margin: 50px 0;
+        margin: 40px 0;
       }
 
       .hello_you div {
@@ -56,7 +62,7 @@
         text-align:center;
       }
 
-      .example svg{
+      .example svg {
         display: block;
         margin: 0 auto;
       }
@@ -64,27 +70,28 @@
   </head>
   <body>
 
-    <h1>Navi.js Examples</h1>
-    <hr>
+    <h1>Navi Examples</h1>
     <h2>Hello You!</h2>
 
-    <pre>
-      $(function(){
+    <pre class="prettyprint">
+      &lt;script&gt;
+        $(function(){
 
-        var input_object = Navi($("#name_input")),
-            span_object = Navi($("#name_show"));
+          var input_object = Navi($("#name_input")),
+              span_object = Navi($("#name_show"));
 
-        span_object.update = function(object) {
-          var name = object.val();
-          this.text(name.length > 0 ? name + "!" : "");
-        };
+          span_object.update = function(object) {
+            var name = object.val();
+            this.text(name.length > 0 ? name + "!" : "");
+          };
 
-        span_object.listen(input_object, "update");
+          span_object.listen(input_object, "update");
 
-        form_object.keyup(function() {
-          input_object.notify();
+          form_object.keyup(function() {
+            input_object.notify();
+          });
         });
-      });
+      &lt;/script&gt;
 
       &lt;div&gt;Hello &lt;span id="name_show"&gt;&lt;/span&gt;&lt;/div&gt;
       &lt;form&gt;
@@ -118,33 +125,35 @@
       });
     </script>
 
-    <h2>Reflecting Circles</h2>
+    <h2>Circles</h2>
 
-    <pre>
-      $(function(){
+    <pre class="prettyprint">
+      &lt;script&gt;
+        $(function(){
 
-        var radius, i = 0, Pi = Math.PI,
-            circle_1_object = Navi($("#circle_1")),
-            circle_2_object = Navi($("#circle_2"));
+          var radius, i = 0, Pi = Math.PI,
+              circle_1_object = Navi($("#circle_1")),
+              circle_2_object = Navi($("#circle_2"));
 
-        circle_2_object.change = function(object) {
-          this.attr('r', 201 - object.attr('r'))
-        };
+          circle_2_object.change = function(object) {
+            this.attr('r', 101 - object.attr('r'));
+          };
 
-        circle_2_object.listen(circle_1_object, "change");
+          circle_2_object.listen(circle_1_object, "change");
 
-        setInterval(function(){
-          if (i / 100 > (2 * Pi)) i = 0;
-          radius = Math.ceil((Math.sin(i / 100) + 1) * 100);
-          circle_1_object.attr('r', radius);
-          circle_1_object.notify();
-          i++;
-        }, 10);
-      });
+          setInterval(function(){
+            if (i / 50 > (2 * Pi)) i = 0;
+            radius = Math.ceil((Math.sin(i / 50) + 1) * 50);
+            circle_1_object.attr('r', radius);
+            circle_1_object.notify();
+            i++;
+          }, 15);
+        });
+      &lt;/script&gt;
 
       &lt;svg width="606" height="404"&gt;
-        &lt;circle cx="202" cy="202" r="100" stroke="black" stroke-width="1" fill="#D74B4B" id="circle_1" /&gt;
-        &lt;circle cx="404" cy="202" r="100" stroke="black" stroke-width="1" fill="#475F77" id="circle_2" /&gt;
+        &lt;circle cx="101" cy="101" r="50" stroke="black" stroke-width="1" fill="#d74b4b" id="circle_1" /&gt;
+        &lt;circle cx="202" cy="101" r="50" stroke="black" stroke-width="1" fill="#475f77" id="circle_2" /&gt;
       &lt;/svg&gt;
     </pre>
 
@@ -156,73 +165,75 @@
             circle_2_object = Navi($("#circle_2"));
 
         circle_2_object.change = function(object) {
-          this.attr('r', 201 - object.attr('r'))
+          this.attr('r', 101 - object.attr('r'));
         };
 
         circle_2_object.listen(circle_1_object, "change");
 
         setInterval(function(){
-          if (i / 100 > (2 * Pi)) i = 0;
-          radius = Math.ceil((Math.sin(i / 100) + 1) * 100);
+          if (i / 50 > (2 * Pi)) i = 0;
+          radius = Math.ceil((Math.sin(i / 50) + 1) * 50);
           circle_1_object.attr('r', radius);
           circle_1_object.notify();
           i++;
-        }, 10);
+        }, 15);
       });
     </script>
 
     <div class="example reflecting_circles">
-      <svg width="606" height="404">
-        <circle cx="202" cy="202" r="100" stroke="black" stroke-width="1" fill="#D74B4B" id="circle_1" />
-        <circle cx="404" cy="202" r="100" stroke="black" stroke-width="1" fill="#475F77" id="circle_2" />
+      <svg width="303" height="202">
+        <circle cx="101" cy="101" r="50" stroke="black" stroke-width="1" fill="#d74b4b" id="circle_1" />
+        <circle cx="202" cy="101" r="50" stroke="black" stroke-width="1" fill="#475f77" id="circle_2" />
       </svg>
     </div>
 
     <h2>Daisy Chain</h2>
 
-    <pre>
-      $(function(){
+    <pre class="prettyprint">
+      &lt;script&gt;
+        $(function(){
 
-        var Messenger = function(circle_group) {
+          var Messenger = function(circle_group) {
 
-          this.count = 0;
-          this.circle_group = circle_group;
+            this.count = 0;
+            this.circle_group = circle_group;
 
-          this.update = function(object){
+            this.update = function(object){
 
-            var that = this;
+              var that = this;
 
-            this.count =  object.count + 1;
-            this.circle_group.children('text').text(this.count);
-            setTimeout(function(){ that.notify() }, 750);
-          }
+              this.count =  object.count + 1;
+              this.circle_group.children('text').text(this.count);
+              setTimeout(function(){ that.notify() }, 750);
+            }
 
-          Navi(this);
-        };
+            Navi(this);
+          };
 
-        var one   = new Messenger($('#message_circle_1')),
-            two   = new Messenger($('#message_circle_2')),
-            three = new Messenger($('#message_circle_3'));
+          var one   = new Messenger($('#message_circle_1')),
+              two   = new Messenger($('#message_circle_2')),
+              three = new Messenger($('#message_circle_3'));
 
-        two.listen(one, "update");
-        three.listen(two, "update");
-        one.listen(three, "update");
+          two.listen(one, "update");
+          three.listen(two, "update");
+          one.listen(three, "update");
 
-        one.notify();
-      });
+          one.notify();
+        });
+      &lt;/script&gt;
 
       &lt;svg width="388" height="104"&gt;
         &lt;g id="message_circle_1"&gt;
           &lt;circle r="50" stroke="black" stroke-width="1" fill="#5dc97d" transform="translate(52, 52)"/&gt;
-          &lt;text fill="black" text-anchor="middle" y="65" x="52" font-size="40px"&gt;0&lt;/text&gt;
+          &lt;text fill="black" text-anchor="middle" y="61" x="52" font-size="25px"&gt;&lt;/text&gt;
         &lt;/g&gt;
         &lt;g id="message_circle_2"&gt;
           &lt;circle r="50" stroke="black" stroke-width="1" fill="#5dc97d" transform="translate(194, 52)"/&gt;
-          &lt;text fill="black" text-anchor="middle" y="65" x="194" font-size="40px"&gt;0&lt;/text&gt;
+          &lt;text fill="black" text-anchor="middle" y="61" x="194" font-size="25px"&gt;&lt;/text&gt;
         &lt;/g&gt;
         &lt;g id="message_circle_3"&gt;
           &lt;circle r="50" stroke="black" stroke-width="1" fill="#5dc97d" transform="translate(336, 52)"/&gt;
-          &lt;text fill="black" text-anchor="middle" y="65" x="336" font-size="40px"&gt;0&lt;/text&gt;
+          &lt;text fill="black" text-anchor="middle" y="61" x="336" font-size="25px"&gt;&lt;/text&gt;
         &lt;/g&gt;
       &lt;/svg&gt;
     </pre>
@@ -264,15 +275,15 @@
       <svg width="388" height="104">
         <g id="message_circle_1">
           <circle r="50" stroke="black" stroke-width="1" fill="#5dc97d" transform="translate(52, 52)"/>
-          <text fill="black" text-anchor="middle" y="65" x="52" font-size="40px">0</text>
+          <text fill="black" text-anchor="middle" y="61" x="52" font-size="25px"></text>
         </g>
         <g id="message_circle_2">
           <circle r="50" stroke="black" stroke-width="1" fill="#5dc97d" transform="translate(194, 52)"/>
-          <text fill="black" text-anchor="middle" y="65" x="194" font-size="40px">0</text>
+          <text fill="black" text-anchor="middle" y="61" x="194" font-size="25px"></text>
         </g>
         <g id="message_circle_3">
           <circle r="50" stroke="black" stroke-width="1" fill="#5dc97d" transform="translate(336, 52)"/>
-          <text fill="black" text-anchor="middle" y="65" x="336" font-size="40px">0</text>
+          <text fill="black" text-anchor="middle" y="61" x="336" font-size="25px"></text>
         </g>
       </svg>
     </div>
