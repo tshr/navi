@@ -5,13 +5,13 @@ A tiny module for implementing the [observer pattern](http://en.wikipedia.org/wi
 It creates a single global function (Navi) that augments passed in objects with the following methods:
 
 
-For listeners
+For listening
 ---------------
 
 - listen(object_to_listen_to, name_of_method_on_listener_to_be_called)
 - unlisten(listened_object)
 
-For notifiers
+For notifying
 --------------
 
 - notify()
