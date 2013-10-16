@@ -1,12 +1,13 @@
 /**
  * Navi.js
  * Simple object pub / sub
- * Toshiro Ken Sugihara 2013
+ * Toshiro Ken Sugihara (c) 2013
+ * The MIT License (MIT)
  **/
 
 (function(){
 
-  this.Navi = function(that) {
+  this.Navi = function(object) {
 
     var listeners = [];
 
@@ -14,13 +15,13 @@
       return listeners;
     };
 
-    that.get_listeners = get_listeners;
+    object.get_listeners = get_listeners;
 
-    that.add_listener = function(listener, method_name) {
+    object.add_listener = function(listener, method_name) {
       listeners.push({ 'listener' : listener, 'method_name' : method_name });
     };
 
-    that.remove_listener = function(listener) {
+    object.remove_listener = function(listener) {
 
       for (var i = 0; i < listeners.length; i++) {
         if (listeners[i].listener === listener) listeners.splice(i, 1);
@@ -28,17 +29,17 @@
       }
     };
 
-    that.listen = function(object, method_name) {
+    object.listen = function(notifier, method_name) {
 
-      object.remove_listener(this);
-      object.add_listener(this, method_name);
+      notifier.remove_listener(this);
+      notifier.add_listener(this, method_name);
     };
 
-    that.unlisten = function(object) {
-      object.remove_listener(this);
+    object.unlisten = function(notifier) {
+      notifier.remove_listener(this);
     };
 
-    that.notify = function() {
+    object.notify = function() {
 
       var listeners = get_listeners();
       // call stored method names on stored listeners and pass in the notifying object
@@ -48,11 +49,11 @@
       }
     };
 
-    that.clear_listeners = function() {
+    object.clear_listeners = function() {
       listeners = [];
     };
 
-    return that;
+    return object;
   };
 
 }());
