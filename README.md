@@ -8,17 +8,17 @@ It creates a single global function (Navi) that augments passed in objects with 
 For listening
 ---------------
 
-- listen(object_to_listen_to, name_of_method_on_listener_to_be_called)
-- unlisten(listened_object)
+- listen(objectToListenTo, nameOfMethodOnListenerToBeCalled)
+- unlisten(listenedObject)
 
 For notifying
 --------------
 
 - notify()
-- add_listener(listener, name_of_method_on_listener_to_be_called)
-- remove_listener(listener)
-- get_listeners()
-- clear_listeners()
+- addListener(listener, nameOfMethodOnListenerToBeCalled)
+- removeListener(listener)
+- getListeners()
+- clearListeners()
 
 Notes
 -----
