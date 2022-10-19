@@ -28,8 +28,3 @@ Notes
 - Listeners can only have one registered method per notifying object
 - If the listen method is called on a pre-registered listener it will update the registered method name if a different one is passed in
 - Listeners must be removed from all objects they are registered with before being dereferenced or they will not be garbage collected
-
-Examples
---------
-
-http://tshr.io/navi/examples.html
