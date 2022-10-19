@@ -5,7 +5,6 @@
     <script src="navi.min.js"></script>
     <title>Navi.js Examples</title>
     <link href='http://fonts.googleapis.com/css?family=Nixie+One' rel='stylesheet' type='text/css'>
-    <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
 
     <style>
       :root {
@@ -23,7 +22,7 @@
         padding-bottom: 10px;
       }
 
-      h2, pre {
+      h2 {
         width: 90%;
         margin: 0 auto;
       }
@@ -36,18 +35,6 @@
 
       .example {
         margin: 40px 0;
-      }
-
-      pre.prettyprint {
-        border: 1px #d8d8d8 solid;
-        padding: 20px 10px 10px 10px;
-        border-radius: 8px;
-        white-space: pre-wrap;
-        white-space: -moz-pre-wrap;
-        white-space: -pre-wrap;
-        white-space: -o-pre-wrap;
-        word-wrap: break-word;
-        background-color: #f9f9fb;
       }
 
       .helloYou div {
@@ -70,32 +57,6 @@
 
     <h1>Navi Examples</h1>
     <h2>Hello You!</h2>
-
-    <pre class="prettyprint">
-      &lt;script&gt;
-        $(function(){
-
-          var inputObject = Navi($("#nameInput")),
-              spanObject = Navi($("#nameShow"));
-
-          spanObject.update = function(object) {
-            var name = object.val();
-            this.text(name.length > 0 ? name + "!" : "");
-          };
-
-          spanObject.listen(inputObject, "update");
-
-          inputObject.keyup(function() {
-            inputObject.notify();
-          });
-        });
-      &lt;/script&gt;
-
-      &lt;div&gt;Hello &lt;span id="nameShow"&gt;&lt;/span&gt;&lt;/div&gt;
-      &lt;form&gt;
-        &lt;input type="text" name="nameInput" id="nameInput" placeholder="Enter your name" /&gt;
-      &lt;/form&gt;
-    </pre>
 
     <div class="example helloYou">
       <div>Hello <span id="nameShow"></span></div>
@@ -124,36 +85,6 @@
     </script>
 
     <h2>Circles</h2>
-
-    <pre class="prettyprint">
-      &lt;script&gt;
-        $(function(){
-
-          var radius, i = 0, Pi = Math.PI,
-              circle1Object = Navi($("#circle1")),
-              circle2Object = Navi($("#circle2"));
-
-          circle2Object.change = function(object) {
-            this.attr('r', 101 - object.attr('r'));
-          };
-
-          circle2Object.listen(circle1Object, "change");
-
-          setInterval(function(){
-            if (i / 50 > (2 * Pi)) i = 0;
-            radius = Math.ceil((Math.sin(i / 50) + 1) * 50);
-            circle1Object.attr('r', radius);
-            circle1Object.notify();
-            i++;
-          }, 15);
-        });
-      &lt;/script&gt;
-
-      &lt;svg width="606" height="404"&gt;
-        &lt;circle cx="101" cy="101" r="50" stroke="black" stroke-width="1" fill="#d74b4b" id="circle1" /&gt;
-        &lt;circle cx="202" cy="101" r="50" stroke="black" stroke-width="1" fill="#475f77" id="circle2" /&gt;
-      &lt;/svg&gt;
-    </pre>
 
     <script>
       $(function(){
@@ -187,57 +118,7 @@
 
     <h2>Daisy Chain</h2>
 
-    <pre class="prettyprint">
-      &lt;script&gt;
-        $(function(){
-
-          var Messenger = function(circleGroup) {
-
-            this.count = 0;
-            this.circleGroup = circleGroup;
-
-            this.update = function(object){
-
-              var that = this;
-
-              this.count =  object.count + 1;
-              this.circleGroup.children('text').text(this.count);
-              setTimeout(function(){ that.notify() }, 750);
-            }
-
-            Navi(this);
-          };
-
-          var one   = new Messenger($('#messageCircle1')),
-              two   = new Messenger($('#messageCircle2')),
-              three = new Messenger($('#messageCircle3'));
-
-          two.listen(one, "update");
-          three.listen(two, "update");
-          one.listen(three, "update");
-
-          one.notify();
-        });
-      &lt;/script&gt;
-
-      &lt;svg width="388" height="104"&gt;
-        &lt;g id="messageCircle1"&gt;
-          &lt;circle r="50" stroke="black" stroke-width="1" fill="#5dc97d" transform="translate(52, 52)"/&gt;
-          &lt;text fill="black" text-anchor="middle" y="61" x="52" font-size="25px"&gt;&lt;/text&gt;
-        &lt;/g&gt;
-        &lt;g id="messageCircle2"&gt;
-          &lt;circle r="50" stroke="black" stroke-width="1" fill="#5dc97d" transform="translate(194, 52)"/&gt;
-          &lt;text fill="black" text-anchor="middle" y="61" x="194" font-size="25px"&gt;&lt;/text&gt;
-        &lt;/g&gt;
-        &lt;g id="messageCircle3"&gt;
-          &lt;circle r="50" stroke="black" stroke-width="1" fill="#5dc97d" transform="translate(336, 52)"/&gt;
-          &lt;text fill="black" text-anchor="middle" y="61" x="336" font-size="25px"&gt;&lt;/text&gt;
-        &lt;/g&gt;
-      &lt;/svg&gt;
-    </pre>
-
     <script>
-
       $(function(){
 
         var Messenger = function(circleGroup) {
@@ -267,8 +148,8 @@
 
         one.notify();
       });
-
     </script>
+
     <div class="example daisyChain">
       <svg width="388" height="104">
         <g id="messageCircle1">
